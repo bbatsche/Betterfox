@@ -25,16 +25,31 @@ user_pref("gfx.canvas.accelerated.cache-items", 4096);
 user_pref("gfx.canvas.accelerated.cache-size", 512);
 user_pref("gfx.content.skia-font-cache-size", 20);
 
+user_pref("gfx.webrender.all", true); // enables WR + additional features
+user_pref("gfx.webrender.precache-shaders", true); // longer initial startup time
+user_pref("gfx.webrender.compositor.force-enabled", true); // enforce
+user_pref("layers.gpu-process.enabled", true); // DEFAULT WINDOWS
+
 /** DISK CACHE ***/
 user_pref("browser.cache.jsbc_compression_level", 3);
+
+user_pref("browser.cache.disk.metadata_memory_limit", 500); // default=250 (0.25 MB); limit of recent metadata we keep in memory for faster access
+
+/** MEMORY CACHE ***/
+user_pref("browser.cache.memory.max_entry_size", 10240); // (10 MB); default=5120 (5 MB)
 
 /** MEDIA CACHE ***/
 user_pref("media.memory_cache_max_size", 65536);
 user_pref("media.cache_readahead_limit", 7200);
 user_pref("media.cache_resume_threshold", 3600);
 
+user_pref("media.memory_caches_combined_limit_kb", 1048576); // DEFAULT; alt=1048576
+user_pref("media.memory_caches_combined_limit_pc_sysmem", 10); // DEFAULT; alt=10; the percentage of system memory that Firefox can use for media caches
+
 /** IMAGE CACHE ***/
 user_pref("image.mem.decode_bytes_at_a_time", 32768);
+
+user_pref("image.cache.size", 10485760); // DEFAULT; in MiB; alt=10485760 (cache images up to 10MiB in size)
 
 /** NETWORK ***/
 user_pref("network.buffer.cache.size", 262144);
@@ -47,16 +62,29 @@ user_pref("network.dnsCacheExpiration", 3600);
 user_pref("network.dns.max_high_priority_threads", 8);
 user_pref("network.ssl_tokens_cache_capacity", 10240);
 
+user_pref("network.http.max-persistent-connections-per-proxy", 48); // default=32
+user_pref("network.http.pacing.requests.min-parallelism", 10); // default=6
+user_pref("network.http.pacing.requests.burst", 14); // default=10
+user_pref("network.dnsCacheEntries", 1000); // default=400
+user_pref("network.dnsCacheExpirationGracePeriod", 240); // default=60; cache DNS entries for 4 minutes after they expire
+
 /** SPECULATIVE LOADING ***/
-user_pref("network.dns.disablePrefetch", true);
-user_pref("network.prefetch-next", false);
-user_pref("network.predictor.enabled", false);
+user_pref("network.fetchpriority.enabled", true);
+user_pref("network.early-hints.enabled", true);
+user_pref("network.early-hints.preconnect.max_connections", 0); // DEFAULT
+user_pref("network.predictor.enable-prefetch", true); // DEFAULT
+user_pref("network.predictor.enable-hover-on-ssl", true); // DEFAULT
+user_pref("network.predictor.max-resources-per-entry", 250); // default=100
+user_pref("network.predictor.max-uri-length", 1000); // default=500
 
 /** EXPERIMENTAL ***/
 user_pref("layout.css.grid-template-masonry-value.enabled", true);
 user_pref("dom.enable_web_task_scheduling", true);
 user_pref("layout.css.has-selector.enabled", true);
 user_pref("dom.security.sanitizer.enabled", true);
+
+user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+user_pref("network.dns.disablePrefetchFromHTTPS", false);
 
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
@@ -72,15 +100,24 @@ user_pref("browser.uitour.enabled", false);
 user_pref("privacy.globalprivacycontrol.enabled", true);
 user_pref("privacy.globalprivacycontrol.functionality.enabled", true);
 
+user_pref("network.cookie.sameSite.laxByDefault", true);
+user_pref("network.cookie.sameSite.schemeful", true);
+
 /** OCSP & CERTS / HPKP ***/
 user_pref("security.OCSP.enabled", 0);
 user_pref("security.remote_settings.crlite_filters.enabled", true);
 user_pref("security.pki.crlite_mode", 2);
 
+user_pref("security.cert_pinning.enforcement_level", 2);
+
 /** SSL / TLS ***/
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 user_pref("security.tls.enable_0rtt_data", false);
+
+/** FINGERPRINT PROTECTION (RFP) ***/
+user_pref("privacy.resistFingerprinting.randomization.daily_reset.enabled", true);
+user_pref("privacy.resistFingerprinting.randomization.daily_reset.private.enabled", true);
 
 /** DISK AVOIDANCE ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
@@ -92,16 +129,23 @@ user_pref("privacy.history.custom", true);
 /** SEARCH / URL BAR ***/
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 user_pref("browser.urlbar.update2.engineAliasRefresh", true);
-user_pref("browser.search.suggest.enabled", false);
 user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false);
-user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false);
-user_pref("browser.formfill.enable", false);
 user_pref("security.insecure_connection_text.enabled", true);
 user_pref("security.insecure_connection_text.pbmode.enabled", true);
 user_pref("network.IDN_show_punycode", true);
 
+user_pref("browser.urlbar.trimHttps", true);
+user_pref("browser.search.separatePrivateDefault.urlbarResult.enabled", true); // HIDDEN
+
 /** HTTPS-FIRST POLICY ***/
 user_pref("dom.security.https_first", true);
+
+/** HTTPS-ONLY MODE ***/
+user_pref("dom.security.https_only_mode", true); // Normal + Private Browsing windows
+user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
+
+/** DNS-over-HTTPS ***/
+user_pref("network.trr.mode", 5); // DEFAULT
 
 /** PASSWORDS ***/
 user_pref("signon.rememberSignons", false);
@@ -110,8 +154,9 @@ user_pref("signon.privateBrowsingCapture.enabled", false);
 user_pref("network.auth.subresource-http-auth-allow", 1);
 user_pref("editor.truncate_user_pastes", false);
 
+user_pref("signon.storeWhenAutocompleteOff", false);
+
 /** ADDRESS + CREDIT CARD MANAGER ***/
-user_pref("extensions.formautofill.addresses.enabled", false);
 user_pref("extensions.formautofill.creditCards.enabled", false);
 
 /** MIXED CONTENT + CROSS-SITE ***/
@@ -124,8 +169,13 @@ user_pref("extensions.postDownloadThirdPartyPrompt", false);
 /** HEADERS / REFERERS ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
+user_pref("network.http.referer.defaultPolicy.trackers", 1);
+user_pref("network.http.referer.defaultPolicy.trackers.pbmode", 1);
+
 /** CONTAINERS ***/
 user_pref("privacy.userContext.ui.enabled", true);
+
+user_pref("privacy.userContext.enabled", true);
 
 /** WEBRTC ***/
 user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
@@ -136,7 +186,6 @@ user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 
 /** MOZILLA ***/
 user_pref("permissions.default.desktop-notification", 2);
-user_pref("permissions.default.geo", 2);
 user_pref("geo.provider.network.url", "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%");
 user_pref("permissions.manager.defaultsUrl", "");
 user_pref("webchannel.allowObject.urlWhitelist", "");
@@ -173,7 +222,8 @@ user_pref("browser.crashReports.unsubmittedCheck.autoSubmit2", false);
 /** DETECTION ***/
 user_pref("captivedetect.canonicalURL", "");
 user_pref("network.captive-portal-service.enabled", false);
-user_pref("network.connectivity-service.enabled", false);
+
+user_pref("extensions.webextensions.restrictedDomains", ""); // remove Mozilla domains so adblocker works on pages
 
 /****************************************************************************
  * SECTION: PESKYFOX                                                        *
@@ -188,8 +238,8 @@ user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons", fa
 user_pref("browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features", false);
 user_pref("browser.preferences.moreFromMozilla", false);
 user_pref("browser.tabs.tabmanager.enabled", false);
-user_pref("browser.aboutConfig.showWarning", false);
-user_pref("browser.aboutwelcome.enabled", false);
+
+user_pref("browser.vpn_promo.enabled", false);
 
 /** THEME ADJUSTMENTS ***/
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
@@ -211,25 +261,28 @@ user_pref("full-screen-api.transition-duration.leave", "0 0");
 user_pref("full-screen-api.warning.delay", -1);
 user_pref("full-screen-api.warning.timeout", 0);
 
+/** FONT APPEARANCE ***/
+user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", true);
+user_pref("gfx.use_text_smoothing_setting", true);
+
 /** URL BAR ***/
 user_pref("browser.urlbar.suggest.calculator", true);
 user_pref("browser.urlbar.unitConversion.enabled", true);
 user_pref("browser.urlbar.trending.featureGate", false);
 
 /** NEW TAB PAGE ***/
-user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 
-/** POCKET ***/
-user_pref("extensions.pocket.enabled", false);
+user_pref("browser.newtabpage.activity-stream.default.sites", "");
 
 /** DOWNLOADS ***/
-user_pref("browser.download.useDownloadDir", false);
 user_pref("browser.download.always_ask_before_handling_new_types", true);
 user_pref("browser.download.manager.addToRecentDocs", false);
 
 /** PDF ***/
 user_pref("browser.download.open_pdf_attachments_inline", true);
+
+user_pref("pdfjs.sidebarViewOnLoad", 2);
 
 /** TAB BEHAVIOR ***/
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
@@ -243,6 +296,12 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // visit https://github.com/yokoffing/Betterfox/wiki/Common-Overrides
 // visit https://github.com/yokoffing/Betterfox/wiki/Optional-Hardening
 // Enter your personal overrides below this line:
+
+// Adobe Creative Cloud in Microsoft Office
+user_pref("security.enterprise_roots.enabled", true);
+user_pref("browser.tabs.tabMinWidth", 90);
+
+user_pref("browser.cache.memory.capacity", 256000);
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
