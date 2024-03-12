@@ -427,8 +427,6 @@ user_pref("userChrome.urlView.focus_item_border",           true);
 user_pref("userChrome.tab.bottom_rounded_corner.all",       true);
 user_pref("userChrome.tab.always_show_tab_icon",            true);
 
-user_pref("userChrome.sidebar.overlap",                     true);
-
 user_pref("userChrome.icon.account_image_to_right",         true);
 user_pref("userChrome.icon.menu.full",                      true);
 user_pref("userChrome.icon.global_menu.mac",                true);
