@@ -399,39 +399,39 @@ user_pref("userChrome.rounding.square_tab", false);
 
 // == Theme Custom Settings ====================================================
 // -- User Chrome --------------------------------------------------------------
-user_pref("userChrome.theme.private",                       true);
+user_pref("userChrome.theme.private", true);
 user_pref("userChrome.theme.proton_color.dark_blue_accent", true);
 
-user_pref("userChrome.decoration.panel_button_separator",   true);
-user_pref("userChrome.decoration.panel_arrow",              true);
+user_pref("userChrome.decoration.panel_button_separator", true);
+user_pref("userChrome.decoration.panel_arrow", true);
 
-user_pref("userChrome.padding.drag_space",                  true);
+user_pref("userChrome.padding.drag_space", true);
 
-user_pref("userChrome.autohide.forward_button",             true);
-user_pref("userChrome.autohide.page_action",                true);
+user_pref("userChrome.autohide.forward_button", true);
+user_pref("userChrome.autohide.page_action", true);
 
-user_pref("userChrome.autohide.toolbar_overlap",            true);
-user_pref("userChrome.autohide.bookmarkbar",                true);
+user_pref("userChrome.autohide.toolbar_overlap", true);
+user_pref("userChrome.autohide.bookmarkbar", true);
 
-user_pref("userChrome.padding.toolbar_button.compact",      true);
-user_pref("userChrome.padding.menu_compact",                true);
-user_pref("userChrome.padding.bookmark_menu.compact",       true);
+user_pref("userChrome.padding.toolbar_button.compact", true);
+user_pref("userChrome.padding.menu_compact", true);
+user_pref("userChrome.padding.bookmark_menu.compact", true);
 
-user_pref("userChrome.urlbar.iconbox_with_separator",       true);
+user_pref("userChrome.urlbar.iconbox_with_separator", true);
 
-user_pref("userChrome.urlView.full_width_padding",          true);
-user_pref("userChrome.urlView.always_show_page_actions",    true);
-user_pref("userChrome.urlView.focus_item_border",           true);
+user_pref("userChrome.urlView.full_width_padding", true);
+user_pref("userChrome.urlView.always_show_page_actions", true);
+user_pref("userChrome.urlView.focus_item_border", true);
 
-user_pref("userChrome.tab.bottom_rounded_corner.all",       true);
-user_pref("userChrome.tab.always_show_tab_icon",            true);
+user_pref("userChrome.tab.bottom_rounded_corner.all", true);
+user_pref("userChrome.tab.always_show_tab_icon", true);
 
-user_pref("userChrome.icon.account_image_to_right",         true);
-user_pref("userChrome.icon.menu.full",                      true);
-user_pref("userChrome.icon.global_menu.mac",                true);
+user_pref("userChrome.icon.account_image_to_right", true);
+user_pref("userChrome.icon.menu.full", true);
+user_pref("userChrome.icon.global_menu.mac", true);
 
 // -- User Content -------------------------------------------------------------
-user_pref("userContent.page.proton_color.system_accent",    true);
+user_pref("userContent.page.proton_color.system_accent", true);
 
 // == Theme Default Settings ===================================================
 // -- User Chrome --------------------------------------------------------------
@@ -501,3 +501,4 @@ user_pref("userContent.page.illustration", true);
 user_pref("userContent.page.proton_color", true);
 user_pref("userContent.page.dark_mode", true); // Need proton_color
 user_pref("userContent.page.proton", true); // Need proton_color
+user_pref("browser.urlbar.ctrlCanonizesURLs", false);
