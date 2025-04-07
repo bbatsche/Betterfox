@@ -159,6 +159,7 @@ user_pref("editor.truncate_user_pastes", false);
 user_pref("signon.generation.enabled", false);
 
 user_pref("signon.storeWhenAutocompleteOff", false);
+user_pref("signon.firefoxRelay.feature", "disabled");
 
 /** ADDRESS + CREDIT CARD MANAGER ***/
 user_pref("extensions.formautofill.addresses.enabled", false);
