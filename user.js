@@ -435,8 +435,8 @@ user_pref("userChrome.padding.drag_space", true);
 user_pref("userChrome.autohide.forward_button", true);
 user_pref("userChrome.autohide.page_action", true);
 
-user_pref("userChrome.autohide.toolbar_overlap", true);
-user_pref("userChrome.autohide.bookmarkbar", true);
+user_pref("userChrome.autohide.toolbar_overlap", false);
+user_pref("userChrome.autohide.bookmarkbar", false);
 
 user_pref("userChrome.padding.toolbar_button.compact", true);
 user_pref("userChrome.padding.menu_compact", true);
