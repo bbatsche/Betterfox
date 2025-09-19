@@ -10,7 +10,7 @@
 /****************************************************************************
  * Betterfox                                                                *
  * "Ad meliora"                                                             *
- * version: 137                                                             *
+ * version: 142                                                             *
  * url: https://github.com/yokoffing/Betterfox                              *
 ****************************************************************************/
 
@@ -43,7 +43,7 @@ user_pref("browser.cache.jsbc_compression_level", 3);
 /** MEMORY CACHE ***/
 user_pref("browser.cache.memory.max_entry_size", 10240); // (10 MB); default=5120 (5 MB)
 
-user_pref("browser.sessionhistory.max_total_viewers", -1);
+user_pref("browser.sessionhistory.max_total_viewers", 8);
 
 /** MEDIA CACHE ***/
 user_pref("media.memory_cache_max_size", 65536); // default=8192; AF=65536; alt=131072
@@ -72,8 +72,14 @@ user_pref("network.dnsCacheExpirationGracePeriod", 240); // default=60; cache DN
 user_pref("network.ssl_tokens_cache_capacity", 10240); // default=2048; more TLS token caching (fast reconnects)
 
 /** SPECULATIVE LOADING ***/
-user_pref("network.early-hints.preconnect.max_connections", 0); // default=10
+user_pref("network.http.speculative-parallel-limit", 20);
+user_pref("network.dns.disablePrefetch", false);
+user_pref("network.dns.disablePrefetchFromHTTPS", false);
+user_pref("browser.urlbar.speculativeConnect.enabled", true);
+user_pref("browser.places.speculativeConnect.enabled", true);
+user_pref("network.prefetch-next", true);
 user_pref("network.predictor.enabled", true);
+user_pref("network.early-hints.preconnect.max_connections", 0); // default=10
 user_pref("network.predictor.enable-prefetch", true);
 user_pref("network.predictor.enable-hover-on-ssl", true);
 user_pref("network.predictor.max-resources-per-entry", 250); // default=100
@@ -85,15 +91,14 @@ user_pref("dom.prefetch_dns_for_anchor_https_document", true);
 user_pref("layout.css.grid-template-masonry-value.enabled", true);
 
 user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
-user_pref("network.dns.disablePrefetchFromHTTPS", false);
 
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
 ****************************************************************************/
 /** TRACKING PROTECTION ***/
 user_pref("browser.contentblocking.category", "strict");
-user_pref("urlclassifier.trackingSkipURLs", "*.reddit.com, *.twitter.com, *.twimg.com, *.tiktok.com");
-user_pref("urlclassifier.features.socialtracking.skipURLs", "*.instagram.com, *.twitter.com, *.twimg.com");
+user_pref("privacy.trackingprotection.allow_list.baseline.enabled", true);
+user_pref("privacy.trackingprotection.allow_list.convenience.enabled", true);
 user_pref("network.cookie.sameSite.noneRequiresSecure", true);
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 user_pref("browser.uitour.enabled", false);
@@ -196,6 +201,7 @@ user_pref("permissions.default.geo", 0);
 user_pref("geo.provider.network.logging.enabled", true);
 user_pref("browser.search.update", true);
 user_pref("permissions.manager.defaultsUrl", "");
+user_pref("extensions.getAddons.cache.enabled", false);
 
 /** TELEMETRY ***/
 user_pref("datareporting.policy.dataSubmissionEnabled", true);
@@ -212,6 +218,7 @@ user_pref("toolkit.telemetry.coverage.opt-out", false);
 user_pref("toolkit.coverage.opt-out", false);
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
+user_pref("datareporting.usage.uploadEnabled", false);
 
 /** EXPERIMENTS ***/
 user_pref("app.shield.optoutstudies.enabled", false);
@@ -248,6 +255,10 @@ user_pref("browser.compactmode.show", true);
 user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
 user_pref("layout.css.prefers-color-scheme.content-override", 2);
 
+/** AI ***/
+user_pref("browser.ml.enable", false);
+user_pref("browser.ml.chat.enabled", false);
+
 /** FULLSCREEN NOTICE ***/
 user_pref("full-screen-api.transition-duration.enter", "0 0");
 user_pref("full-screen-api.transition-duration.leave", "0 0");
@@ -266,7 +277,7 @@ user_pref("browser.urlbar.quickactions.enabled", true);
 user_pref("browser.urlbar.shortcuts.quickactions", true);
 user_pref("browser.urlbar.suggest.calculator", true);
 user_pref("browser.urlbar.unitConversion.enabled", true);
-user_pref("browser.urlbar.trending.featureGate", false);handoffToAwesomebar
+user_pref("browser.urlbar.trending.featureGate", false);
 user_pref("browser.urlbar.suggest.topsites", false);
 user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
 user_pref("browser.urlbar.recentsearches.featureGate", true);
@@ -277,6 +288,7 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
+user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false);
 user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 
 /** DOWNLOADS ***/

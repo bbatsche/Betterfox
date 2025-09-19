@@ -3,7 +3,7 @@
  * Peskyfox                                                                 *
  * "Aquila non capit muscas"                                                *
  * priority: remove annoyances                                              *
- * version: 137                                                             *
+ * version: 142                                                             *
  * url: https://github.com/yokoffing/Betterfox                              *
  * credit: Some prefs are reproduced and adapted from the arkenfox project  *
  * credit urL: https://github.com/arkenfox/user.js                          *
@@ -28,14 +28,6 @@ user_pref("extensions.htmlaboutaddons.recommendations.enabled", false);
 // [NOTE] This pref has no effect when Health Reports are disabled.
 // [SETTING] Privacy & Security>Firefox Data Collection & Use>Allow Firefox to make personalized extension recommendations
 user_pref("browser.discovery.enabled", false);
-
-// PREF: disable Fakespot integration [FF116+]
-// [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1840156#c0
-// [2] https://github.com/arkenfox/user.js/issues/1730
-// [3] https://www.fakespot.com/
-// [4] https://www.ghacks.net/2023/10/12/firefox-will-soon-tell-you-if-product-reviews-are-reliable/
-//user_pref("browser.shopping.experience2023.enabled", false); // DEFAULT
-//user_pref("browser.shopping.experience2023.ads.exposure", false); // DEFAULT [FF121+]
 
 // PREF: disable Firefox from asking to set as the default browser
 // [1] https://github.com/yokoffing/Betterfox/issues/166
@@ -105,7 +97,24 @@ user_pref("browser.privateWindowSeparation.enabled", false);
 //user_pref("browser.newtabpage.activity-stream.newtabWallpapers.v2.enabled", true); // [DEFAULT FF132+]
 
 /****************************************************************************
- * SECTION: COOKIE BANNER HANDLING                                         *
+ * SECTION: AI                                                              *
+****************************************************************************/
+// PREF: AI master switch
+// [1] https://github.com/yokoffing/Betterfox/issues/416
+user_pref("browser.ml.enable", false);
+
+// PREF: AI chat
+user_pref("browser.ml.chat.enabled", false);
+
+// PREF: link previews
+//user_pref("browser.ml.linkPreview.enabled", false);
+
+// PREF: AI-enhanced tab groups
+// [1] https://support.mozilla.org/kb/how-use-ai-enhanced-tab-groups
+//user_pref("browser.tabs.groups.smart.enabled", false);
+
+/****************************************************************************
+ * SECTION: COOKIE BANNER HANDLING                                          *
 ****************************************************************************/
 
 // PREF: Cookie Banner handling
@@ -130,7 +139,7 @@ user_pref("browser.privateWindowSeparation.enabled", false);
 //user_pref("cookiebanners.service.enableGlobalRules.subFrames", true); // DEFAULT [FF121+]
 
 /****************************************************************************
- * SECTION: TRANSLATIONS                                                   *
+ * SECTION: TRANSLATIONS                                                    *
 ****************************************************************************/
 
 // PREF: Firefox Translations [FF118+]
@@ -194,8 +203,8 @@ user_pref("browser.urlbar.suggest.engines", false);
 //user_pref("browser.urlbar.shortcuts.quickactions", false);
 //user_pref("browser.urlbar.suggest.weather", true); // DEFAULT [FF108]
     //user_pref("browser.urlbar.weather.ignoreVPN", false); // DEFAULT
-user_pref("browser.urlbar.suggest.calculator", true);
-user_pref("browser.urlbar.unitConversion.enabled", true);
+//user_pref("browser.urlbar.suggest.calculator", true); // [DEFAULT FF137+]
+//user_pref("browser.urlbar.unitConversion.enabled", true); // [DEFAULT FF141+]
 
 // PREF: disable dropdown suggestions with empty query
 //user_pref("browser.urlbar.suggest.topsites", false);
@@ -207,10 +216,11 @@ user_pref("browser.urlbar.trending.featureGate", false);
 
 // PREF: disable urlbar suggestions
 //user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
+//user_pref("browser.urlbar.amp.featureGate", false); // [FF141+] adMarketplace
 //user_pref("browser.urlbar.fakespot.featureGate", false); // [FF130+] [DEFAULT: false]
 //user_pref("browser.urlbar.mdn.featureGate", false); // [FF117+] [HIDDEN PREF]
-//user_pref("browser.urlbar.pocket.featureGate", false); // [FF116+] [DEFAULT: false]
 //user_pref("browser.urlbar.weather.featureGate", false); // [FF108+] [DEFAULT: false]
+//user_pref("browser.urlbar.wikipedia.featureGate", false); // [FF141+]
 //user_pref("browser.urlbar.clipboard.featureGate", false); // [FF118+] [DEFAULT: true FF125+]
 //user_pref("browser.urlbar.yelp.featureGate", false); // [FF124+] [DEFAULT: false]
 
@@ -237,11 +247,14 @@ user_pref("browser.urlbar.trending.featureGate", false);
 // disable=0
 //user_pref("browser.urlbar.maxRichResults", 5); // default=10
 
-// PREF: text fragments [FF126+ NIGHTLY]
+// PREF: text fragments
+// [WARNING] Enabling can cause tab crashes [4]
 // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1753933#c6
 // [2] https://developer.mozilla.org/en-US/docs/Web/Text_fragments
 // [3] https://web.dev/articles/text-fragments
+// [4] https://github.com/yokoffing/Betterfox/issues/397
 //user_pref("dom.text_fragments.enabled", true); // [DEFAULT]
+//user_pref("dom.text_fragments.create_text_fragment.enabled", true);
 
 /****************************************************************************
  * SECTION: AUTOPLAY                                                        *
@@ -289,11 +302,12 @@ user_pref("browser.urlbar.trending.featureGate", false);
 //user_pref("browser.newtabpage.activity-stream.discoverystream.enabled", false);
 //user_pref("browser.newtabpage.activity-stream.showSearch", true); // NTP Web Search [DEFAULT]
 //user_pref("browser.newtabpage.activity-stream.feeds.topsites", false); // Shortcuts
-      user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // Shortcuts > Sponsored shortcuts [FF83+]
+      user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false); // Sponsored shortcuts [FF83+]
 //user_pref("browser.newtabpage.activity-stream.showWeather", false); // Weather [FF130+]
     //user_pref("browser.newtabpage.activity-stream.system.showWeather", false); // hides Weather as an UI option
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
-      user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Sponsored Stories [FF58+]  
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Sponsored stories [FF58+]
+user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false); // [FF140+] Support Firefox
 //user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false); // Recent Activity [DEFAULT]
       //user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
       //user_pref("browser.newtabpage.activity-stream.section.highlights.includeDownloads", false);
@@ -311,7 +325,7 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 // PREF: keep search in the search box; prevent from jumping to address bar
 // [1] https://www.reddit.com/r/firefox/comments/oxwvbo/firefox_start_page_search_options/
 //user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
-      
+
 // PREF: Firefox logo to always show
 //user_pref("browser.newtabpage.activity-stream.logowordmark.alwaysVisible", true); // DEFAULT
 
@@ -364,7 +378,7 @@ user_pref("extensions.pocket.enabled", false);
 // [NOTE] The first download ever ran in a new profile will still open the panel.
 //user_pref("browser.download.alwaysOpenPanel", false);
 
-// PREF: disable adding downloads to the system's "recent documents" list 
+// PREF: disable adding downloads to the system's "recent documents" list
 user_pref("browser.download.manager.addToRecentDocs", false);
 
 /****************************************************************************
@@ -378,7 +392,7 @@ user_pref("browser.download.manager.addToRecentDocs", false);
 //user_pref("pdfjs.disabled", false); // DEFAULT
 
 // PREF: allow viewing of PDFs even if the response HTTP headers
-// include Content-Disposition:attachment. 
+// include Content-Disposition:attachment.
 //user_pref("browser.helperApps.showOpenOptionForPdfJS", true); // DEFAULT
 
 // PREF: open PDFs inline (FF103+)
@@ -413,7 +427,7 @@ user_pref("browser.download.open_pdf_attachments_inline", true);
 // PREF: determine the behavior of pages opened by JavaScript (like popups)
 // 2 (default) = catch new windows opened by JavaScript that do not have
 // specific values set (how large the window should be, whether it
-// should have a status bar, etc.) 
+// should have a status bar, etc.)
 // 1 = let all windows opened by JavaScript open in new windows
 // 0 = force all new windows opened by JavaScript into tabs
 // [NOTE] Most advertising popups also open in new windows with values set
@@ -546,7 +560,7 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // [TIP] Use about:reader?url=%s as a keyword to open links automatically in reader mode [1].
 // Firefox will not have to parse webpage for Reader when navigating.
 // Extremely minimal performance impact, if you disable.
-// [1] https://www.reddit.com/r/firefox/comments/621sr2/i_found_out_how_to_automatically_open_a_url_in/ 
+// [1] https://www.reddit.com/r/firefox/comments/621sr2/i_found_out_how_to_automatically_open_a_url_in/
 //user_pref("reader.parse-on-load.enabled", false);
 
 // PREF: Spell-check
