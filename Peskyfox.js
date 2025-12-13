@@ -306,7 +306,7 @@ user_pref("browser.urlbar.trending.featureGate", false);
 //user_pref("browser.newtabpage.activity-stream.showWeather", false); // Weather [FF130+]
     //user_pref("browser.newtabpage.activity-stream.system.showWeather", false); // hides Weather as an UI option
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false); // Recommended by Pocket
-user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Sponsored stories [FF58+]  
+user_pref("browser.newtabpage.activity-stream.showSponsored", false); // Sponsored stories [FF58+]
 user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false); // [FF140+] Support Firefox
 //user_pref("browser.newtabpage.activity-stream.feeds.section.highlights", false); // Recent Activity [DEFAULT]
       //user_pref("browser.newtabpage.activity-stream.section.highlights.includeBookmarks", false);
@@ -325,7 +325,7 @@ user_pref("browser.newtabpage.activity-stream.default.sites", "");
 // PREF: keep search in the search box; prevent from jumping to address bar
 // [1] https://www.reddit.com/r/firefox/comments/oxwvbo/firefox_start_page_search_options/
 //user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
-      
+
 // PREF: Firefox logo to always show
 //user_pref("browser.newtabpage.activity-stream.logowordmark.alwaysVisible", true); // DEFAULT
 
@@ -378,7 +378,7 @@ user_pref("extensions.pocket.enabled", false);
 // [NOTE] The first download ever ran in a new profile will still open the panel.
 //user_pref("browser.download.alwaysOpenPanel", false);
 
-// PREF: disable adding downloads to the system's "recent documents" list 
+// PREF: disable adding downloads to the system's "recent documents" list
 user_pref("browser.download.manager.addToRecentDocs", false);
 
 /****************************************************************************
@@ -392,7 +392,7 @@ user_pref("browser.download.manager.addToRecentDocs", false);
 //user_pref("pdfjs.disabled", false); // DEFAULT
 
 // PREF: allow viewing of PDFs even if the response HTTP headers
-// include Content-Disposition:attachment. 
+// include Content-Disposition:attachment.
 //user_pref("browser.helperApps.showOpenOptionForPdfJS", true); // DEFAULT
 
 // PREF: open PDFs inline (FF103+)
@@ -427,7 +427,7 @@ user_pref("browser.download.open_pdf_attachments_inline", true);
 // PREF: determine the behavior of pages opened by JavaScript (like popups)
 // 2 (default) = catch new windows opened by JavaScript that do not have
 // specific values set (how large the window should be, whether it
-// should have a status bar, etc.) 
+// should have a status bar, etc.)
 // 1 = let all windows opened by JavaScript open in new windows
 // 0 = force all new windows opened by JavaScript into tabs
 // [NOTE] Most advertising popups also open in new windows with values set
@@ -560,7 +560,7 @@ user_pref("layout.word_select.eat_space_to_next_word", false);
 // [TIP] Use about:reader?url=%s as a keyword to open links automatically in reader mode [1].
 // Firefox will not have to parse webpage for Reader when navigating.
 // Extremely minimal performance impact, if you disable.
-// [1] https://www.reddit.com/r/firefox/comments/621sr2/i_found_out_how_to_automatically_open_a_url_in/ 
+// [1] https://www.reddit.com/r/firefox/comments/621sr2/i_found_out_how_to_automatically_open_a_url_in/
 //user_pref("reader.parse-on-load.enabled", false);
 
 // PREF: Spell-check

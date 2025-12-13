@@ -1,7 +1,7 @@
 
 /****************************************************************************
  * Securefox                                                                *
- * "Natura non contristatur"                                                *     
+ * "Natura non contristatur"                                                *
  * priority: provide sensible security and privacy                          *
  * version: 142                                                             *
  * url: https://github.com/yokoffing/Betterfox                              *
@@ -134,7 +134,7 @@ user_pref("privacy.trackingprotection.allow_list.convenience.enabled", true); //
 // Networking-related APIs are not intended to be used for websites to store data, but they can be abused for
 // cross-site tracking. Network APIs and caches are permanently partitioned by the top-level site.
 // Network Partitioning (isolation) will allow Firefox to associate resources on a per-website basis rather than together
-// in the same pool. This includes cache, favicons, CSS files, images, and even speculative connections. 
+// in the same pool. This includes cache, favicons, CSS files, images, and even speculative connections.
 // [1] https://www.zdnet.com/article/firefox-to-ship-network-partitioning-as-a-new-anti-tracking-defense/
 // [2] https://developer.mozilla.org/en-US/docs/Web/Privacy/State_Partitioning#network_partitioning
 // [3] https://blog.mozilla.org/security/2021/01/26/supercookie-protections/
@@ -270,7 +270,7 @@ user_pref("security.OCSP.enabled", 0);
 // [3] https://www.ssl.com/blogs/how-do-browsers-handle-revoked-ssl-tls-certificates/#ftoc-heading-3
 // [4] https://letsencrypt.org/2024/12/05/ending-ocsp/
 //user_pref("security.OCSP.require", true);
-      
+
 // PREF: CRLite
 // CRLite covers valid certs, and it doesn't fall back to OCSP in mode 2 [FF84+].
 // CRLite is faster and more private than OCSP [2].
@@ -303,7 +303,7 @@ user_pref("security.pki.crlite_mode", 2);
 //user_pref("security.cert_pinning.enforcement_level", 2);
 
 // PREF: do not trust installed third-party root certificates [FF120+]
-// Disable Enterprise Root Certificates of the operating system. 
+// Disable Enterprise Root Certificates of the operating system.
 // For users trying to get intranet sites on managed networks,
 // or who have security software configured to analyze web traffic.
 // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1848815
@@ -610,13 +610,13 @@ user_pref("browser.search.suggest.enabled", false);
     //user_pref("browser.search.suggest.enabled.private", false); // DEFAULT
 
 // PREF: disable Show recent searches
-// [SETTING] Search > Search Suggestions > Show recent searches 
+// [SETTING] Search > Search Suggestions > Show recent searches
 //user_pref("browser.urlbar.suggest.recentsearches", false);
 
 // PREF: disable Firefox Suggest
 // [1] https://github.com/arkenfox/user.js/issues/1257
 user_pref("browser.urlbar.quicksuggest.enabled", false); // controls whether the UI is shown
-    //user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+] 
+    //user_pref("browser.urlbar.suggest.quicksuggest.sponsored", false); // [FF92+]
     //user_pref("browser.urlbar.suggest.quicksuggest.nonsponsored", false); // [FF95+]
 // hide Firefox Suggest label in URL dropdown box
 user_pref("browser.urlbar.groupLabels.enabled", false);
@@ -888,7 +888,7 @@ user_pref("signon.privateBrowsingCapture.enabled", false);
 // [NOTE] No usernames or passwords are sent to third-party sites.
 // [1] https://lockwise.firefox.com/
 // [2] https://support.mozilla.org/en-US/kb/firefox-lockwise-managing-account-data
-// user_pref("signon.management.page.breach-alerts.enabled", false); 
+// user_pref("signon.management.page.breach-alerts.enabled", false);
     //user_pref("signon.management.page.breachAlertUrl", "");
 //user_pref("browser.contentblocking.report.lockwise.enabled", false);
     //user_pref("browser.contentblocking.report.lockwise.how_it_works.url", "");
@@ -1218,7 +1218,7 @@ user_pref("privacy.userContext.ui.enabled", true);
 // [NOTE] Still enable this for checks to happen locally.
 // [SETTING] Privacy & Security>Security>... "Block dangerous downloads"
 //user_pref("browser.safebrowsing.downloads.enabled", false); // all checks happen locally
-      
+
 // PREF: disable SB checks for downloads (remote)
 // To verify the safety of certain executable files, Firefox may submit some information about the
 // file, including the name, origin, size and a cryptographic hash of the contents, to the Google
@@ -1289,7 +1289,7 @@ user_pref("browser.safebrowsing.downloads.remote.enabled", false);
 // [1] https://easylinuxtipsproject.blogspot.com/p/security.html#ID5
 // [2] https://github.com/yokoffing/Betterfox/wiki/Common-Overrides#site-notifications
 user_pref("permissions.default.desktop-notification", 2);
-   
+
 // PREF: default permission for Location Requests
 // 0=always ask (default), 1=allow, 2=block
 user_pref("permissions.default.geo", 2);
@@ -1381,7 +1381,7 @@ user_pref("toolkit.telemetry.coverage.opt-out", true); // [HIDDEN PREF]
 user_pref("toolkit.coverage.opt-out", true); // [FF64+] [HIDDEN PREF]
 user_pref("toolkit.coverage.endpoint.base", "");
 
-// PREF: disable Firefox Home (Activity Stream) telemetry 
+// PREF: disable Firefox Home (Activity Stream) telemetry
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
 

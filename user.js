@@ -18,33 +18,54 @@
  * SECTION: FASTFOX                                                         *
 ****************************************************************************/
 /** GENERAL ***/
-user_pref("content.notify.interval", 100000);
+user_pref("content.notify.interval", 100000); // (.10s); default=120000 (.12s)
 
 /** GFX ***/
 user_pref("gfx.canvas.accelerated.cache-size", 512);
 user_pref("gfx.content.skia-font-cache-size", 20);
 
+user_pref("gfx.webrender.all", true); // enables WR + additional features
+user_pref("gfx.webrender.precache-shaders", true); // longer initial startup time
+user_pref("gfx.webrender.compositor.force-enabled", true); // enforce
+user_pref("layers.gpu-process.enabled", true); // DEFAULT WINDOWS
+user_pref("media.gpu-process-decoder", true); // DEFAULT WINDOWS
+
 /** DISK CACHE ***/
-user_pref("browser.cache.disk.enable", false);
+user_pref("browser.cache.disk.enable", true);
+user_pref("browser.cache.disk.smart_size.enabled", true);
+user_pref("browser.cache.disk.capacity", 2048000); // default=256000; size of disk cache; 1024000=1GB, 2048000=2GB
+user_pref("browser.cache.disk.max_entry_size", 51200); // DEFAULT (50 MB); maximum size of an object in disk cache
+
+user_pref("browser.cache.disk.metadata_memory_limit", 500); // default=250 (0.25 MB); limit of recent metadata we keep in memory for faster access
+
+user_pref("browser.cache.jsbc_compression_level", 3);
 
 /** MEMORY CACHE ***/
 user_pref("browser.sessionhistory.max_total_viewers",-1);
 
 /** MEDIA CACHE ***/
-user_pref("media.memory_cache_max_size", 65536);
-user_pref("media.cache_readahead_limit", 7200);
-user_pref("media.cache_resume_threshold", 3600);
+user_pref("media.memory_cache_max_size", 65536); // default=8192; AF=65536; alt=131072
+user_pref("media.cache_readahead_limit", 7200); // 120 min; default=60; stop reading ahead when our buffered data is this many seconds ahead of the current playback
+user_pref("media.cache_resume_threshold", 3600); // 60 min; default=30; when a network connection is suspended, don't resume it until the amount of buffered data falls below this threshold
+
+user_pref("media.memory_caches_combined_limit_kb", 1048576); // DEFAULT; alt=1048576
+user_pref("media.memory_caches_combined_limit_pc_sysmem", 10); // DEFAULT; alt=10; the percentage of system memory that Firefox can use for media caches
 
 /** IMAGE CACHE ***/
 user_pref("image.mem.decode_bytes_at_a_time", 65536);
 
 /** NETWORK ***/
-user_pref("network.http.max-connections", 1800);
-user_pref("network.http.max-persistent-connections-per-server", 10);
-user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5);
-user_pref("network.http.pacing.requests.enabled", false);
-user_pref("network.dnsCacheExpiration", 3600);
-user_pref("network.ssl_tokens_cache_capacity", 10240);
+user_pref("network.http.max-connections", 1800); // default=900
+user_pref("network.http.max-persistent-connections-per-server", 10); // default=6; download connections; anything above 10 is excessive
+user_pref("network.http.max-urgent-start-excessive-connections-per-host", 5); // default=3
+user_pref("network.http.max-persistent-connections-per-proxy", 48); // default=32
+user_pref("network.http.pacing.requests.enabled", true); // DEFAULT
+user_pref("network.http.pacing.requests.min-parallelism", 10); // default=6
+user_pref("network.http.pacing.requests.burst", 14); // default=10
+user_pref("network.dnsCacheEntries", 1000); // default=400
+user_pref("network.dnsCacheExpiration", 3600); // keep entries for 1 hour
+user_pref("network.dnsCacheExpirationGracePeriod", 240); // default=60; cache DNS entries for 4 minutes after they expire
+user_pref("network.ssl_tokens_cache_capacity", 10240); // default=2048; more TLS token caching (fast reconnects)
 
 /** SPECULATIVE LOADING ***/
 user_pref("network.http.speculative-parallel-limit", 20);
@@ -58,6 +79,8 @@ user_pref("network.predictor.enabled", true);
 /** EXPERIMENTAL ***/
 user_pref("layout.css.grid-template-masonry-value.enabled", true);
 
+user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+
 /****************************************************************************
  * SECTION: SECUREFOX                                                       *
 ****************************************************************************/
@@ -70,6 +93,9 @@ user_pref("browser.helperApps.deleteTempFileOnExit", true);
 user_pref("browser.uitour.enabled", false);
 user_pref("privacy.globalprivacycontrol.enabled", true);
 
+user_pref("network.cookie.sameSite.laxByDefault", true);
+user_pref("network.cookie.sameSite.schemeful", true);
+
 /** OCSP & CERTS / HPKP ***/
 user_pref("security.OCSP.enabled", 0);
 user_pref("security.pki.crlite_mode", 2);
@@ -79,6 +105,10 @@ user_pref("security.csp.reporting.enabled", true);
 user_pref("security.ssl.treat_unsafe_negotiation_as_broken", true);
 user_pref("browser.xul.error_pages.expert_bad_cert", true);
 user_pref("security.tls.enable_0rtt_data", false);
+
+/** FINGERPRINT PROTECTION (RFP) ***/
+user_pref("privacy.resistFingerprinting.randomization.daily_reset.enabled", true);
+user_pref("privacy.resistFingerprinting.randomization.daily_reset.private.enabled", true);
 
 /** DISK AVOIDANCE ***/
 user_pref("browser.privatebrowsing.forceMediaMemoryCache", true);
@@ -91,6 +121,8 @@ user_pref("privacy.history.custom", true);
 /** SEARCH / URL BAR ***/
 user_pref("browser.urlbar.trimHttps", true);
 user_pref("browser.urlbar.untrimOnUserInteraction.featureGate", true);
+user_pref("browser.urlbar.showSearchTerms.enabled", true);
+user_pref("browser.urlbar.showSearchTerms.featureGate", true);
 user_pref("browser.search.separatePrivateDefault.ui.enabled", true);
 user_pref("browser.search.suggest.enabled", true);
 user_pref("browser.urlbar.quicksuggest.enabled", false);
@@ -98,11 +130,32 @@ user_pref("browser.urlbar.groupLabels.enabled", true);
 user_pref("browser.formfill.enable", false);
 user_pref("network.IDN_show_punycode", true);
 
+user_pref("browser.urlbar.trimHttps", true);
+user_pref("browser.search.separatePrivateDefault.urlbarResult.enabled", true); // HIDDEN
+
+/** HTTPS-FIRST POLICY ***/
+user_pref("dom.security.https_first", true);
+
+/** HTTPS-ONLY MODE ***/
+user_pref("dom.security.https_only_mode", true); // Normal + Private Browsing windows
+user_pref("dom.security.https_only_mode_error_page_user_suggestions", true);
+
+/** DNS-over-HTTPS ***/
+user_pref("network.trr.mode", 5); // Off (handled by PiHole)
+
 /** PASSWORDS ***/
-user_pref("signon.formlessCapture.enabled", false);
-user_pref("signon.privateBrowsingCapture.enabled", false);
+user_pref("signon.formlessCapture.enabled", true);
+user_pref("signon.privateBrowsingCapture.enabled", true);
 user_pref("network.auth.subresource-http-auth-allow", 1);
 user_pref("editor.truncate_user_pastes", false);
+user_pref("signon.generation.enabled", false);
+
+user_pref("signon.storeWhenAutocompleteOff", false);
+user_pref("signon.firefoxRelay.feature", "disabled");
+
+/** ADDRESS + CREDIT CARD MANAGER ***/
+user_pref("extensions.formautofill.addresses.enabled", false);
+user_pref("extensions.formautofill.creditCards.enabled", false);
 
 /** MIXED CONTENT + CROSS-SITE ***/
 user_pref("security.mixed_content.block_display_content", true);
@@ -114,8 +167,17 @@ user_pref("extensions.enabledScopes", 5);
 /** HEADERS / REFERERS ***/
 user_pref("network.http.referer.XOriginTrimmingPolicy", 2);
 
+user_pref("network.http.referer.defaultPolicy.trackers", 1);
+user_pref("network.http.referer.defaultPolicy.trackers.pbmode", 1);
+
 /** CONTAINERS ***/
 user_pref("privacy.userContext.ui.enabled", true);
+
+user_pref("privacy.userContext.enabled", true);
+
+/** WEBRTC ***/
+user_pref("media.peerconnection.ice.proxy_only_if_behind_proxy", true);
+user_pref("media.peerconnection.ice.default_address_only", true);
 
 /** SAFE BROWSING ***/
 user_pref("browser.safebrowsing.downloads.remote.enabled", false);
@@ -176,6 +238,7 @@ user_pref("browser.profiles.enabled", true);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 user_pref("browser.compactmode.show", true);
 user_pref("browser.privateWindowSeparation.enabled", false); // WINDOWS
+user_pref("layout.css.prefers-color-scheme.content-override", 2);
 
 /** AI ***/
 user_pref("browser.ml.enable", false);
@@ -187,7 +250,19 @@ user_pref("full-screen-api.transition-duration.leave", "0 0");
 user_pref("full-screen-api.warning.timeout", 3000);
 
 /** URL BAR ***/
+user_pref("browser.urlbar.suggest.clipboard", true);
+user_pref("browser.urlbar.suggest.openpage", true);
+user_pref("browser.urlbar.suggest.engines", true);
+user_pref("browser.urlbar.suggest.searches", true);
+user_pref("browser.urlbar.quickactions.enabled", true);
+user_pref("browser.urlbar.shortcuts.quickactions", true);
+user_pref("browser.urlbar.suggest.calculator", true);
+user_pref("browser.urlbar.unitConversion.enabled", true);
 user_pref("browser.urlbar.trending.featureGate", false);
+user_pref("browser.urlbar.suggest.topsites", false);
+user_pref("browser.urlbar.addons.featureGate", false); // [FF115+]
+user_pref("browser.urlbar.recentsearches.featureGate", true);
+user_pref("browser.urlbar.autoFill.adaptiveHistory.enabled", true);
 
 /** NEW TAB PAGE ***/
 user_pref("browser.newtabpage.activity-stream.default.sites", "");
@@ -195,21 +270,25 @@ user_pref("browser.newtabpage.activity-stream.showSponsoredTopSites", false);
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 user_pref("browser.newtabpage.activity-stream.showSponsored", false);
 user_pref("browser.newtabpage.activity-stream.showSponsoredCheckboxes", false);
-
-/** POCKET ***/
-user_pref("extensions.pocket.enabled", false);
+user_pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 
 /** DOWNLOADS ***/
+user_pref("browser.download.always_ask_before_handling_new_types", true);
 user_pref("browser.download.manager.addToRecentDocs", false);
 
 /** PDF ***/
 user_pref("browser.download.open_pdf_attachments_inline", true);
+
+user_pref("pdfjs.sidebarViewOnLoad", 2);
 
 /** TAB BEHAVIOR ***/
 user_pref("browser.bookmarks.openInTabClosesMenu", false);
 user_pref("browser.menu.showViewImageInfo", true);
 user_pref("findbar.highlightAll", true);
 user_pref("layout.word_select.eat_space_to_next_word", false);
+user_pref("browser.tabs.loadBookmarksInTabs", true);
+user_pref("dom.disable_window_move_resize", true);
+user_pref("editor.word_select.delete_space_after_doubleclick_selection", true);
 
 /****************************************************************************
  * START: MY OVERRIDES                                                      *
@@ -282,6 +361,8 @@ user_pref("security.enterprise_roots.enabled", true);
 user_pref("security.certerrors.mitm.auto_enable_enterprise_roots", true);
 user_pref("browser.tabs.tabMinWidth", 120);
 
+user_pref("browser.cache.memory.capacity", 256000);
+user_pref("browser.urlbar.ctrlCanonizesURLs", false);
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
