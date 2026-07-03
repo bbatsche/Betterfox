@@ -363,6 +363,7 @@ user_pref("browser.tabs.tabMinWidth", 120);
 
 user_pref("browser.cache.memory.capacity", 256000);
 user_pref("browser.urlbar.ctrlCanonizesURLs", false);
+user_pref("browser.altClickSave", true);
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
